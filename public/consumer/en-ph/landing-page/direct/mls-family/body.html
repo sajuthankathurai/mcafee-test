@@ -1,0 +1,26 @@
+<body>
+
+    <div data-instance="above-the-fold">
+       
+<div>
+    <p v-cloak v-html="getPrice('o1','retailPrice')">$112.00</p>
+</div>
+            
+             <subscription-timer>
+    <template v-slot:default="prop">
+            <div class="cmp-timer2 mt-1 mt-lg-3 mb-4 mb-lg-5" v-if="digitalData.subscription != null &amp;&amp; digitalData.subscription.daysToExpire &gt; 0 &amp;&amp; digitalData.subscription.daysToExpire &lt;= 7">
+                <div class="pipe red"><span> </span></div>
+                <div class="title"><span>Your subscription expires in  </span><span class="timer"><b>{{prop.days}}</b> <i>day(s) :</i> <b>{{prop.hours}}</b> <i>hour(s) :</i> <b>{{prop.minutes}}</b> <i>min(s) :</i> <b>{{prop.seconds}}</b> <i>sec(s)</i></span></div>
+            </div>
+            <div class="cmp-timer2 mt-3 mb-5" v-if="digitalData.subscription != null &amp;&amp; digitalData.subscription.daysExpired &gt; 0 &amp;&amp; digitalData.subscription.daysExpired &lt;= 10">
+                <div class="pipe red"><span> </span></div>
+                <div class="title"><span>Your subscription has expired: </span><span class="timer"><b>{{prop.days}}</b> <i>day(s) :</i> <b>{{prop.hours}}</b> <i>hour(s) :</i> <b>{{prop.minutes}}</b> <i>min(s) :</i> <b>{{prop.seconds}}</b> <i>sec(s)</i></span></div>
+            </div>
+    </template>
+    </subscription-timer> 
+            
+            
+    </div>
+            
+            </body>
+    </html>
