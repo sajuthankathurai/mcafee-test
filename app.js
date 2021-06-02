@@ -1,9 +1,13 @@
+process.env.NODE_ENV = process.env.NODE_ENV || "development";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-var indexRouter = require("./routes/index");
+var s3Routes = require("./routes/s3.router");
+var defaultRoutes = require("./routes/default.router");
 
 var app = express();
 
@@ -13,13 +17,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // view engine setup
-app.set("views", path.join(__dirname, "template", "views"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-//To serve static files such as images, CSS files, and JavaScript files,
-//use the express.static built-in middleware function in Express.
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
+app.use(s3Routes);
+app.use(defaultRoutes);
 
 module.exports = app;
